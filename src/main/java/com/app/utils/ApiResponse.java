@@ -1,9 +1,9 @@
 package com.app.utils;
 
 public class ApiResponse {
-    private String status;
-    private String message;
-    private Object data;
+    public String status;
+    public String message;
+    public Object data;
     public ApiResponse(String status, String message, Object data) {
 
         this.status = status;

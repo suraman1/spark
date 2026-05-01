@@ -7,7 +7,10 @@ import com.app.repository.UserRepository;
 import java.sql.ResultSet;
 
 public class AuthService {
-    private static UserRepository userRepo = new UserRepository();
+    private UserRepository userRepo;
+    public AuthService() {
+        userRepo  = new UserRepository();
+    }
     public Object signup(User userData) {
         try {
             ResultSet result = userRepo.getUser(userData.getEmail());
@@ -29,10 +32,10 @@ public class AuthService {
                 String password = result.getString("password");
                 BCrypt.Result pass = BCrypt.verifyer().verify(userData.getPassword().toCharArray(), password);
                 if (userData.getEmail().equals(email) && pass.verified) {
-                    return result.getObject("name");
+                    return result.getObject("email");
                 }
             }
-            return "Account Not found";
+            return "User Not found";
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

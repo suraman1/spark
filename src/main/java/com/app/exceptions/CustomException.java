@@ -1,4 +1,17 @@
 package com.app.exceptions;
 
-public class CustomException {
+public class CustomException extends RuntimeException{
+    private final int code;
+    private final String message;
+    CustomException(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+    public String getMessage() {
+        return message;
+    }
 }
